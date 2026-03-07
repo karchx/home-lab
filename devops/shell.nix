@@ -6,10 +6,10 @@ let
   k8sPackage = pkgs.callPackage ./k8s/default.nix { };
 in
 pkgs.mkShell {
-  buildInputs = terraformEnv.buildInputs ++ ansiblePackage.buildInputs ++ k8sPackage.buildInputs;
+  buildInputs = k8sPackage.buildInputs ++ ansiblePackage.buildInputs;
 
   shellHook = ''
-     ${ansiblePackage.shellHook}
      ${k8sPackage.shellHook}
+     ${ansiblePackage.shellHook}
   '';
 }

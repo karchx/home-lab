@@ -2,19 +2,14 @@
 pkgs.mkShell {
   buildInputs = with pkgs; [
     minikube
+    kubectl
     kubernetes-helm
     jq
+    go-task
   ];
 
   shellHook = ''
-    alias k='minikube kubectl'
-    . <(minikube completion bash)
+    alias k='kubectl'
     . <(helm completion bash)
-
-    # kubectk and docker completion require the control plane to be running
-    if [ $(minikube status -o json | jq -r .Host) = "Running" ]; then
-            . <(k completion bash)
-            . <(minikube -p minikube docker-env)
-    fi
   '';
 }
