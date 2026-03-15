@@ -1,7 +1,0 @@
-resources:
-  - ../../base/zookeeper
-  - ../../base/broker-1
-  - ../../base/broker-2
-  - ../../base/broker-3
-  - ../../base/kafkaui
-  - ../../base/jobs
