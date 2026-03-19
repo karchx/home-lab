@@ -1,0 +1,8 @@
+releases:
+  # Platform
+  - name: postgres
+    namespace: platform
+    chart: oci://registry-1.docker.io/bitnamicharts/postgresql
+    values:
+      - platform/postgres/values.yaml
+

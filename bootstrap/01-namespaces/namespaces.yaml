@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: argocd
+  labels:
+    area: infra
+    managed-by: homelab
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: platform
+  labels:
+    area: platform
+    managed-by: homelab
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: de
+  labels:
+    area: data-engineering
+    managed-by: homelab
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ds
+  labels:
+    area: data-science
+    managed-by: homelab
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: se
+  labels:
+    area: software-engineering
+    managed-by: homelab
