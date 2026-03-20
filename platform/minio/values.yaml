@@ -1,0 +1,35 @@
+mode: standalone
+
+auth:
+  rootUser: admin
+  # TODO: added secret
+  rootPassword: "changeme123"
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
+
+persistence:
+  enabled: true
+  size: 200Gi
+  storageClass: "local-path"
+
+defaultBuckets: "warehouse,raw-data,processed-data,notebooks"
+
+ingress:
+  enabled: false
+
+service:
+  type: ClusterIP
+  ports:
+    api: 9000 # S3 API
+    console: 9001    # Web UI
+
+metrics:
+  serviceMonitor:
+    enabled: false
+

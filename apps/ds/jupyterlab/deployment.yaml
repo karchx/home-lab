@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jupyterlab
+  namespace: ds
+  labels:
+    app: jupyterlab
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jupyterlab
+  template:
+    metadata:
+      labels:
+        app: jupyterlab
+    spec:
+      # serviceAccountName: ds-sa
+      containers:
+      - name: jupyterlab
+        # scipy-notebook incluye pandas, numpy, matplotlib, scikit-learn
+        image: jupyter/datascience-notebook:latest
+        command: ["start-notebook.sh"]
+        args: ["--NotebookApp.token=''"]
+        ports:
+        - containerPort: 8888
+        env:
+        # MinIO accesible como S3 desde notebooks
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: minio-credentials
+              key: access-key
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: minio-credentials
+              key: secret-key
+        - name: AWS_DEFAULT_REGION
+          value: "us-east-1"
+        - name: MLFLOW_S3_ENDPOINT_URL
+          value: "http://minio.platform.svc.cluster.local:9000"
+        resources:
+          requests:
+            cpu: 250m
+            memory: 1Gi
+          limits:
+            cpu: 2
+            memory: 6Gi
+        volumeMounts:
+        - name: work
+          mountPath: /home/jovyan/work
+        - name: config
+          mountPath: /home/jovyan/.jupyter/jupyter_server_config.py
+          subPath: jupyter_server_config.py
+      volumes:
+      - name: work
+        persistentVolumeClaim:
+          claimName: jupyterlab-work
+      - name: config
+        configMap:
+          name: jupyterlab-config
+

@@ -6,3 +6,16 @@ releases:
     values:
       - platform/postgres/values.yaml
 
+  - name: minio
+    namespace: platform
+    chart: minio/minio
+    values:
+      - platform/minio/values.yaml
+
+  # Data Science
+  - name: jupyterlab
+    namespace: ds
+    chart: ./apps/ds/jupyterlab
+    needs:
+      - platform/minio
+

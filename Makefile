@@ -17,6 +17,14 @@ platform-up: ## Deploy platform components
 platform-down: ## Remove platform components
 	helmfile -f helmfile.yaml -l namespace=platform destroy
 
+.PHONY: ds-up
+ds-up: ## Deploy Data science components
+	helmfile -f helmfile.yaml -l namespace=ds sync
+
+.PHONY: ds-down
+ds-down: ## Remove Data science components
+	helmfile -f helmfile.yaml -l namespace=ds destroy
+
 # ----- PORT FORWARDING -----
 .PHONY: pf-postgres
 pf-postgres: ## Port forward Postgres
