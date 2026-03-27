@@ -25,6 +25,15 @@ ds-up: ## Deploy Data science components
 ds-down: ## Remove Data science components
 	helmfile -f helmfile.yaml -l namespace=ds destroy
 
+
+.PHONY: de-up
+de-up: ## Deploy Data engineering components
+	helmfile -f helmfile.yaml -l namespace=de sync
+
+.PHONY: de-down
+de-down: ## Remove Data engineering components
+	helmfile -f helmfile.yaml -l namespace=de destroy
+
 # ----- PORT FORWARDING -----
 .PHONY: pf-postgres
 pf-postgres: ## Port forward Postgres

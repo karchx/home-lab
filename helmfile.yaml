@@ -19,3 +19,17 @@ releases:
     needs:
       - platform/minio
 
+  # DATA ENGINEERING
+  - name: spark-operator
+    namespace: de
+    chart: spark-operator/spark-operator
+    values:
+      - apps/de/spark/values.yaml
+
+  - name: spark-rbac
+    namespace: de
+    chart: ./apps/de/spark
+    needs:
+      - de/spark-operator
+
+

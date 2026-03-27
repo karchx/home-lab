@@ -1,0 +1,27 @@
+spark:
+  jobNamespaces:
+    - de
+
+controller:
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 256Mi
+
+webhook:
+  enable: true
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      cpu: 200m
+      memory: 128Mi
+
+rbac:
+  create: true
+  createClusterRole: false
+
