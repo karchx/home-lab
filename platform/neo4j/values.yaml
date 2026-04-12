@@ -1,0 +1,12 @@
+neo4j:
+  name: neo4j-homelab
+  resources:
+    cpu: "0.5"
+    memory: "2Gi"
+  password: "changeme123"
+
+volumes:
+  data:
+    mode: "dynamic"
+    dynamic:
+      storageClassName: "local-path"

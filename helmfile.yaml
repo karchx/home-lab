@@ -6,6 +6,12 @@ releases:
     values:
       - platform/postgres/values.yaml
 
+  - name: neo4j
+    namespace: platform
+    chart: neo4j/neo4j
+    values:
+      - platform/neo4j/values.yaml
+
   - name: minio
     namespace: platform
     chart: minio/minio
