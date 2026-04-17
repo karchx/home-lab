@@ -5,6 +5,11 @@ neo4j:
     memory: "2Gi"
   password: "changeme123"
 
+image:
+  repository: neo4j
+  tag: "5.18"
+  pullPolicy: IfNotPresent
+
 volumes:
   data:
     mode: "dynamic"
