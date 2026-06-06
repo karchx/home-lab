@@ -9,6 +9,10 @@ apply-crds: ## Apply Custom Resource Definitions (CRDs)
 apply-namespaces: ## Apply namespaces
 	kubectl apply -f bootstrap/01-namespaces/
 
+.PHONY: apply-storages
+apply-storages: ## Apply namespaces
+	kubectl apply -f bootstrap/02-storages/
+
 .PHONY: platform-up
 platform-up: ## Deploy platform components
 	helmfile -f helmfile.yaml -l namespace=platform sync

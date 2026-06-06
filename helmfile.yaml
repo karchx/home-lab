@@ -18,15 +18,15 @@ releases:
     values:
       - platform/minio/values.yaml
 
-  - name: rabbitmq-operator
-    namespace: platform
-    chart: ./platform/rabbitmq-operator
+  # - name: rabbitmq-operator
+  #   namespace: platform
+  #   chart: ./platform/rabbitmq-operator
 
-  - name: rabbitmq-cluster
-    namespace: platform
-    chart: ./platform/rabbitmq
-    needs:
-      - platform/rabbitmq-operator
+  # - name: rabbitmq-cluster
+  #   namespace: platform
+  #   chart: ./platform/rabbitmq
+  #   needs:
+  #     - platform/rabbitmq-operator
 
   # Data Science
   - name: jupyterlab

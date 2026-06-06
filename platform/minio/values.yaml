@@ -7,16 +7,14 @@ auth:
 
 resources:
   requests:
-    cpu: 100m
-    memory: 256Mi
-  limits:
     cpu: 500m
-    memory: 512Mi
+    memory: 1Gi
+  limits:
+    memory: 4Gi
 
 persistence:
   enabled: true
-  size: 200Gi
-  storageClass: "local-path"
+  existingClaim: "minio-pvc-external"
 
 defaultBuckets: "warehouse,raw-data,processed-data,notebooks"
 

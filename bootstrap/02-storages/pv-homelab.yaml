@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-minio-stivnix
+spec:
+  capacity:
+    storage: 1650Gi
+  volumeMode: Filesystem
+  accessModes:
+  - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: local-ext-disk
+  local:
+    path: /mnt/homelab-storage/minio-backend
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - stivnix
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: minio-pvc-external
+  namespace: platform
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: local-ext-disk
+  resources:
+    requests:
+      storage: 1650Gi
